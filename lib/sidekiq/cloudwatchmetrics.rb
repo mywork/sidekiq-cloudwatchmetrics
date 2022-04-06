@@ -202,6 +202,8 @@ module Sidekiq::CloudWatchMetrics
 
     # Returns the total number of workers across all processes
     private def calculate_capacity(processes)
+      return 0.0 if processes.empty?
+
       processes.map do |process|
         process["concurrency"]
       end.sum
